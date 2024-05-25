@@ -308,14 +308,12 @@ return;
     });
   }
 });
-const yawaka = /*process.env.PORT || */3000;
-app.listen(yawaka, () => {
+app.listen(3000, () => {
   console.log(`🤖 🔴🟢🔵 🤖
 P  R  O  J  E  C  T
 · B  O  T  I  F  Y ·
-Started at port: ${yawaka}
+Started at port 3000
 Created By: Kenneth Aceberos
-${chalk.red(`Ikaw ang inspiration ko iloveyou po Wiegine`)}
 🤖 🔴🟢🔵 🤖`);
 });
 process.on("unhandledRejection", reason => {
