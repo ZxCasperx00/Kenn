@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>Active Sessions</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="style.css">
+      <meta property="og:image" content="image/20240425_165854.png">
+      <meta property="og:image:type" content="image/png">
+      <meta property="og:image:width" content="2560">
+      <meta property="og:image:height" content="1440">
+      <meta property="og:description" content="Created by Kenneth Aceberos (Neth). PROJECT BOTIFY is a 100% free bot making website.">
+      <link rel="icon" href="image/20240425_163855.png">
+   </head>
+   <body>
+      <div class="container">
+        <center>
+            <h3 class="form-text-center"><h6 style="padding: 10px; border: 1.0px solid #ffffff; border-radius: 5px;"><center><div class="header-text animate-text">ACTIVE SESSIONS</div><br><span style="font-size: 6px">Lists of logged in <b>Bots</b></span></h6></h3>
+         <div class="row" id="user_online"></div>
+         </center>
+        </div>
+      <style>
+         .user-card {
+         display: flex;
+         align-items: center;
+         margin-bottom: 10px;
+         border: 1px solid #dee2e6;
+         border-radius: 10px;
+         padding: 5px;
+         width: 100%;
+         text-align: center;
+         overflow: auto;
+         animation: glow 3s infinite alternate; 
+         }
+         @keyframes glow {
+         from {
+         border-color: #000; 
+         }
+         to {
+         border-color: #fff; 
+         }
+         }
+         .user-card img {
+         max-width: 100%;
+         border-radius: 10px;
+         margin-right: 10px;
+         }
+         .user-info {
+         flex-grow: 1;
+         }
+         .user-info h4 {
+         margin-left: 3px;
+         margin-bottom: 3px;
+         font-size: 16px;
+         white-space: nowrap;
+         overflow: hidden;
+         text-overflow: ellipsis;
+         text-align: start;
+         }
+         .user-info p {
+         margin: 0;
+         font-size: 12px;
+         white-space: nowrap;
+         overflow: hidden;
+         text-overflow: ellipsis;
+         text-align: start;
+         }
+         p {
+         padding: 3px;
+         }
+         p.uptime-user {
+         }
+      </style>
+      <script>
+         async function listOfAi() {
+             const userOnline = document.getElementById("user_online");
+             try {
+                 const response = await fetch("/Tanginamo1");
+                 const data = await response.json();
+                 userOnline.innerHTML = '';
+                 data.forEach(user => {
+                     const {
+                         name,
+                         thumbSrc,
+                         profileUrl,
+                         time,
+                     } = user;
+                     const userCard = document.createElement('div');
+                     userCard.className = 'col-12 user-card mb-4';
+                     const image = document.createElement('img');
+                     image.src = thumbSrc;
+                     image.alt = 'User Thumbnail';
+                     image.className = 'img-thumbnail';
+                     const userInfo = document.createElement('div');
+                     userInfo.className = 'user-info';
+                     const userName = document.createElement('h4');
+                     userName.textContent = name;
+                     //const profileLink = document.createElement('p');
+                     //profileLink.innerHTML = `${profileUrl}`;
+                     const uptimeUser = document.createElement('p');
+                     uptimeUser.className = 'uptime-user';
+                     uptimeUser.innerHTML = `Running on ${timeFormat(time)}`;
+                     userInfo.appendChild(userName);
+                     //userInfo.appendChild(profileLink);
+                     userInfo.appendChild(uptimeUser);
+                     userCard.appendChild(image);
+                     userCard.appendChild(userInfo);
+                     userOnline.appendChild(userCard);
+    
+                     const intervalId = setInterval(() => {
+                         user.time++;
+                         updateTimer(userCard, user.time);
+                     }, 1000); 
+                 });
+             } catch (error) {
+                 console.error(error);
+                 userOnline.innerHTML = `<div class="alert alert-danger" role="alert">An error occurred while fetching data.</div>`;
+             }
+         }
+         
+         function updateTimer(userCard, currentTime) {
+             const uptimeUser = userCard.querySelector('.uptime-user');
+             uptimeUser.textContent = `Running on ${timeFormat(currentTime)}`;
+         }
+         
+        function timeFormat(currentTime) {
+            const days = Math.floor(currentTime / (3600 * 24));
+            const hours = Math.floor((currentTime % (3600 * 24)) / 3600);
+            const minutes = Math.floor((currentTime % 3600) / 60);
+            const seconds = currentTime % 60;
+
+            let timeFormat = '';
+
+            switch (true) {
+                case days > 0:
+                    timeFormat += `${days} day${days > 1 ? 's' : ''} `;
+                case hours > 0:
+                    timeFormat += `${hours} hour${hours > 1 ? 's' : ''} `;
+                case minutes > 0:
+                    timeFormat += `${minutes} minute${minutes > 1 ? 's' : ''} `;
+                default:
+                    timeFormat += `${seconds} second${seconds > 1 ? 's' : ''}`;
+            }
+
+            return timeFormat.trim();
+        }
+
+         
+         listOfAi();
+         
+      </script>
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+   </body>
+</html>
