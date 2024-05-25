@@ -308,7 +308,7 @@ return;
     });
   }
 });
-const yawaka = process.env.PORT || 3000;
+const yawaka = /*process.env.PORT || */3000;
 app.listen(yawaka, () => {
   console.log(`🤖 🔴🟢🔵 🤖
 P  R  O  J  E  C  T
