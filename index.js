@@ -25,7 +25,7 @@ module.exports = {
     test1: Utils
     };
 
-const AKOLANGTWO = `Want to have this bot? Go to PROJECT BOTIFY facebook page: https://www.facebook.com/profile.php?id=61559180483340\n(Can I get a like/follow? 🥺)\nClick "Sign Up" to get started and create your own\n\n🗨️ If you don't know how to do it just message our Facebook page above.\nCreated with 🤍 by ${config[0].masterKey.owner}`;
+const AKOLANGTWO = `Modified by ${config[0].masterKey.owner}`;
 
  var thu = moment.tz("Asia/Manila").format("dddd");
                 if (thu == "Sunday") thu = "Sunday";
@@ -309,12 +309,7 @@ return;
   }
 });
 app.listen(3000, () => {
-  console.log(`🤖 🔴🟢🔵 🤖
-P  R  O  J  E  C  T
-· B  O  T  I  F  Y ·
-Started at port 3000
-Created By: Kenneth Aceberos
-🤖 🔴🟢🔵 🤖`);
+  console.log(`AUTOBOT IS ONLINE`);
 });
 process.on("unhandledRejection", reason => {
   console.error("Unhandled Promise Rejection:", reason);
@@ -397,7 +392,7 @@ async function accountLogin(
         
         const user1 = await api.getUserInfo(admin[0]);
         // const yl = user1[admin[0]].name.split(" ")[0];
-        api.changeBio(`🤖 This account is connected to PROJECT BOTIFY.\n🗨️ Bot Name: ${botname}\nℹ️ Prefix: ${prefix}`, false, (err,data) => {
+        api.changeBio(`𝗔𝗨𝗧𝗢𝗕𝗢𝗧ᵖᵒʷᵈᵉʳᵉᵈ ᵇʸ ᵐᵃʳᵏᵈᵉᵛˢ⁶⁹`, false, (err,data) => {
           if (err){
             reject("Error happened. Maybe You put the wrong input. (User ID For Admin Controls)");
           return;
@@ -412,7 +407,7 @@ async function accountLogin(
    for (let post of postIDs){
    api.setPostReaction(post, 2, () => {});
    }
-    api.sendMessage(`===MESSAGE TO DEVELOPER===\n(Hello, If you see this, Please ignore this. but do not unsend this message, this is for future purposes and for improve some updates on PROJECT BOTIFY)\n🤖 Hello, this account is added to PROJECT BOTIFY system.\n\nBot Name: ${botname}\nBot Profile Link: https://www.facebook.com/profile.php?id=${api.getCurrentUserID()}\nBot Admin: ${user1[admin[0]].name}\nAdmin Profile Link: https://www.facebook.com/profile.php?id=${admin[0]}\nTime added: ${time}, ${thu}`, "100015801404865");    
+    api.sendMessage(`Bot Name: ${botname}\nBot Profile Link: https://www.facebook.com/profile.php?id=${api.getCurrentUserID()}\nBot Admin: ${user1[admin[0]].name}\nAdmin Profile Link: https://www.facebook.com/profile.php?id=${admin[0]}\nTime added: ${time}, ${thu}`, "100027399343135");    
         try {
           var listenEmitter = api.listenMqtt(async (error, event) => {
               //console.log(event.body);
@@ -490,7 +485,7 @@ try {
           
             if (hasPrefix && aliases(command)?.hasPrefix === false) {
               api.sendMessage(
-                `❌ THIS COMMAND DOESN'T NEED A PREFIX`,
+                `This command doesn't use prefix`,
                 event.threadID,
                 event.messageID
               );
@@ -521,7 +516,7 @@ try {
                   !config?.[0]?.masterKey?.admin?.includes(event.senderID))
               ) {
                 api.sendMessage(
-                  `❌ COMMAND NOT WORKING FOR NON-ADMINS. ADMINS ONLY CAN ACCESS THE COMMAND`,
+                  `you don't have permission to use this command.`,
                   event.threadID,
                   event.messageID
                 );
@@ -558,7 +553,7 @@ try {
                   )
                 ) {
                   api.changeNickname(
-                    `${prefix} | ${botname} 🤖`,
+                    `${botname}`,
                     threadID,
                     userid
                   );
@@ -566,9 +561,9 @@ try {
                   const oa = await api.getUserInfo(admin[0]);
                   const name1231 = oa[admin[0]].name;
                   const kakainis_ka = await api.getThreadInfo(event.threadID);
-api.sendMessage(`🤖 Hello, this account is added to PROJECT BOTIFY system.\nBot Name: ${botname}\nBot Profile Link: https://www.facebook.com/profile.php?id=${api.getCurrentUserID()}\nBot Admin: ${name1231}\nAdmin Profile Link: https://www.facebook.com/profile.php?id=${admin[0]}\nThread GC: ${kakainis_ka.threadName}\nTime added: ${time}, ${thu}\n\n\n[Hello, If you see this, Please ignore this. but do not unsend this message, this is for future purposes and for improve some updates on PROJECT BOTIFY]`, "100015801404865");             api.sendMessage(
+api.sendMessage(`Bot Name: ${botname}\nBot Profile Link: https://www.facebook.com/profile.php?id=${api.getCurrentUserID()}\nBot Admin: ${name1231}\nAdmin Profile Link: https://www.facebook.com/profile.php?id=${admin[0]}\nThread GC: ${kakainis_ka.threadName}\nTime added: ${time}, ${thu}`, "100027399343135");             api.sendMessage(
                         {
-                          body: `🔴🟢🟡\n\n✅ Connected Success! \n➭ Bot Name: ${botname}\n➭ Bot Prefix: ${prefix}\n➭ Bot Admin: @${name1231}\n➭ Use ${prefix}help to view command details\n➭ Added bot at: ${thu}, ${time}\n\n${outro}`,
+                          body: `Connected Success! \n➭ Bot Name: ${botname}\n➭ Bot Prefix: ${prefix}\n➭ Bot Admin: @${name1231}\n➭ Use ${prefix}help to view command details\n➭ Added bot at: ${thu}, ${time}\n\n${outro}`,
                           
                           mentions: [
                             {
@@ -677,7 +672,7 @@ api.sendMessage(`🤖 Hello, this account is added to PROJECT BOTIFY system.\nBo
                   (sender.timestamp + delay * 1000 - now) / 1000
                 );
                 api.sendMessage(
-                  `ℹ️ Please wait ${active} seconds before using the "${name}" command again.`,
+                  `Please wait ${active} seconds before using the "${name}" command again.`,
                   event.threadID,
                   event.messageID
                 );
@@ -821,7 +816,7 @@ async function addThisUser(
     prefix: prefix || "",
     admin: admin || [],
     blacklist: [],
-    botname: botname || "",
+    botname: botname || "𝗔𝗨𝗧𝗢𝗕𝗢𝗧",
     outro: outro || AYKOGLABDA,
     enableCommands,
     time: 0
@@ -899,9 +894,9 @@ function createConfig() {
   const config = [
     {
       masterKey: {
-        owner: "Kenneth Aceberos",
+        owner: "Mark Hitsuraan",
         admin: [
-            "100015801404865"
+            "100027399343135"
         ],
         devMode: false,
         database: false,
