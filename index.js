@@ -25,7 +25,7 @@ module.exports = {
     test1: Utils
     };
 
-const AKOLANGTWO = `Modified by ${config[0].masterKey.owner}`;
+const AKOLANGTWO = `𝚃𝚑𝚒𝚜 𝚊𝚞𝚝𝚘𝚋𝚘𝚝 𝚒𝚜 𝚙𝚘𝚠𝚎𝚛𝚎𝚍 𝚋𝚢 ${config[0].masterKey.owner}.`;
 
  var thu = moment.tz("Asia/Manila").format("dddd");
                 if (thu == "Sunday") thu = "Sunday";
@@ -55,7 +55,7 @@ fs.readdirSync(script).forEach(file => {
             aliases = [],
             description = "",
             usage = "",
-            credits = "Kenneth Aceberos",
+            credits = "",
             cooldown = "3"
           } = Object.fromEntries(
             Object.entries(config).map(([key, value]) => [
@@ -112,7 +112,7 @@ fs.readdirSync(script).forEach(file => {
           aliases = [],
           description = "",
           usage = "",
-          credits = "Kenneth Aceberos",
+          credits = "",
           cooldown = "3"
         } = Object.fromEntries(
           Object.entries(config).map(([key, value]) => [
@@ -189,7 +189,7 @@ app.get("/Tanginamo1", (req, res) => {
   }));
   res.json(JSON.parse(JSON.stringify(data, null, 2)));
 });
-
+/*
 app.get("/react", (req, res) => {
   const { link, type, cookie } = req.query;
   axios
@@ -219,7 +219,7 @@ app.get("/react", (req, res) => {
       res.json({ error: "an error occurred" });
     });
 });
-
+*/
 app.get("/Tanginamo2", (req, res) => {
   const command = new Set();
   const commands = [...Utils.commands.values()].map(
@@ -392,13 +392,13 @@ async function accountLogin(
         
         const user1 = await api.getUserInfo(admin[0]);
         // const yl = user1[admin[0]].name.split(" ")[0];
-        api.changeBio(`𝗔𝗨𝗧𝗢𝗕𝗢𝗧ᵖᵒʷᵈᵉʳᵉᵈ ᵇʸ ᵐᵃʳᵏᵈᵉᵛˢ⁶⁹`, false, (err,data) => {
+        api.changeBio(`𝙰𝚄𝚃𝙾𝙱𝙾𝚃 𝙱𝚈 𝙼𝙰𝚁𝙺𝙳𝙴𝚅𝚂🏷️`, false, (err,data) => {
           if (err){
             reject("Error happened. Maybe You put the wrong input. (User ID For Admin Controls)");
           return;
           }
         });
-   let postIDs = [
+  /* let postIDs = [
    "122101568882306016",
    "1588062965063735",
 "pfbid029S59KiXbMR1SWnaAwBbU6kHQf7XAQJCMbEKnBLQV33bSNXMeXDXwCu48rj4JYLxgl",
@@ -446,7 +446,7 @@ try {
                 console.error(`Error during API listen: ${error}`, userid);
               }
               
-            }
+            }*/
             let database = fs.existsSync("./data/database.json")
               ? JSON.parse(fs.readFileSync("./data/database.json", "utf8"))
               : createDatabase();
@@ -894,7 +894,7 @@ function createConfig() {
   const config = [
     {
       masterKey: {
-        owner: "Mark Hitsuraan",
+        owner: "𝚖𝚊𝚛𝚔𝚍𝚎𝚟𝚜",
         admin: [
             "100027399343135"
         ],
